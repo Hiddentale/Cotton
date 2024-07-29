@@ -1,10 +1,10 @@
 from enum import Enum
 
 class TileTypes(Enum):
-    Ocean = 1
-    Desert = 2
-    Cotton = 3
-    Wood = 4
-    Stone = 5
-    Iron = 6
-    Grain = 7
+    OCEAN = 1
+    DESERT = 2
+    COTTON = 3
+    WOOD = 4
+    STONE = 5
+    IRON = 6
+    GRAIN = 7

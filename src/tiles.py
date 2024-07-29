@@ -1,10 +1,13 @@
 class board_tiles:
 
-    def __init__(self, dimensions):
+    def __init__(self, dimensions: int):
         self.__dimensions = dimensions
         # list is 3 - 4 - 5 - 4 - 3
         # key: place, value: (number, resource)
         # need algorithm to make a good adjacency list, but position and edges is always the same atleast for original catan without water
+
+    def get_dimensions(self):
+        return self.__dimensions
 
 
 class board_tile(board_tiles):
