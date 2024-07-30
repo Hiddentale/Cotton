@@ -7,6 +7,9 @@ class Hexagon:
 
         assert self.__x + self.__y + self.__z == 0
 
+    def __repr__(self):
+        return f"({self.__x}, {self.__y}, {self.__z})"
+
     def __eq__(self, hexagon):
         return hexagon.get_q() == self.__x and hexagon.get_r() == self.__y
     
@@ -30,4 +33,15 @@ class Hexagon:
     
     def get_z(self):
         return self.__z
-    pass
+    
+    def get_position(self):
+        return (self.__x, self.__y, self.__z)
+    
+    def find_neighbours(self):
+        return [self + hexagon for hexagon in POSSIBLE_HEXAGON_DIRECTIONS]
+    
+
+POSSIBLE_HEXAGON_DIRECTIONS = [Hexagon(1, 0), Hexagon(1, -1), Hexagon(0, -1), Hexagon(-1, 0), Hexagon(-1, 1), Hexagon(0, 1)]
+
+
+print(Hexagon(-2, 1).find_neighbours())

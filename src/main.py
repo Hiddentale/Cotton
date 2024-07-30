@@ -15,13 +15,12 @@ def main():
     amount_of_tiles = {TileTypes.IRON: 3, TileTypes.COTTON: 4, TileTypes.DESERT: 1, TileTypes.GRAIN: 4, TileTypes.OCEAN: 0, TileTypes.STONE: 3, TileTypes.WOOD: 4}
 
     for tile, amount in amount_of_tiles.items():
-        boardgame_tiles = boardgame_tiles + [board_tile(position=(), tile_type=tile)] * amount
+        boardgame_tiles = boardgame_tiles + [BoardTile(position=(), tile_type=tile)] * amount
 
     shuffle(boardgame_tiles)
 
     print(f"All tiles to be used: {boardgame_tiles}\n")
 
-    # add tiles to list of lists
     indexess = [[0, 3], [3, 7], [7, 12], [12, 16], [16, 19]]
     boardgame = []
     def create_row_of_tiles(indexes, boardgame_tiles):
