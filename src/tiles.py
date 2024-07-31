@@ -21,18 +21,3 @@ class BoardTile(Hexagon):
     
     def get_die_number(self):
         return self.__die_number
-
-
-#Need to add coordinates iteratively, starting at center
-# Place all tiles, then add ocean tiles which are not part of the original tile set
-
-#unordered_set<Hex> map;
-#for (int q = -N; q <= N; q++) {
-    #int r1 = max(-N, -q - N);
-    #int r2 = min( N, -q + N);
-    #for (int r = r1; r <= r2; r++) {
-        #map.insert(Hex(q, r, -q-r));
-    #}
-#}
-
-

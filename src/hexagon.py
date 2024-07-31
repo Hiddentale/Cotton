@@ -42,5 +42,3 @@ class Hexagon:
     
 
 POSSIBLE_HEXAGON_DIRECTIONS = [Hexagon(1, 0), Hexagon(1, -1), Hexagon(0, -1), Hexagon(-1, 0), Hexagon(-1, 1), Hexagon(0, 1)]
-
-
