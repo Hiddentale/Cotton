@@ -11,7 +11,7 @@ class Hexagon:
         return f"({self.__x}, {self.__y}, {self.__z})"
 
     def __eq__(self, hexagon):
-        return hexagon.get_q() == self.__x and hexagon.get_r() == self.__y
+        return hexagon.get_x() == self.__x and hexagon.get_y() == self.__y
     
     def __add__(self, hexagon):
         return Hexagon(self.__x + hexagon.get_x(), self.__y + hexagon.get_y())
@@ -35,7 +35,7 @@ class Hexagon:
         return self.__z
     
     def get_position(self):
-        return (self.__x, self.__y, self.__z)
+        return (self.__x, self.__y)
     
     def find_neighbours(self):
         return [self + hexagon for hexagon in POSSIBLE_HEXAGON_DIRECTIONS]
