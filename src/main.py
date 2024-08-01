@@ -5,6 +5,9 @@ from amount_of_tiles import get_amount_of_tiles
 
 # 1: Let a game start where a random cotton board is constructed
 # 2: Add the numbers to the tiles
+# 3: Draw the board to a window
+# 4: Add players
+# 5: 
 
 def position_is_in_current_radius(position, current_radius):
     next_radius = current_radius + 1

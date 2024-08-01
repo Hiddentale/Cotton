@@ -11,7 +11,7 @@ class BoardTile(Hexagon):
     def __repr__(self) -> str:
         #return f"{self.__tile_type.name} tile"
         #return f"{self.__tile_type.name} tile positioned at ({self.get_x()}, {self.get_y()}, {self.get_z()}) with die number: {self.__die_number}"
-        return f"{self.__tile_type.name} tile positioned at ({self.get_x()}, {self.get_y()}, {self.get_z()})"
+        return f"{self.__tile_type.name} tile ({self.get_x()}, {self.get_y()}, {self.get_z()})"
 
     def get_position(self):
         return self.__position
