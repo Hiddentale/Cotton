@@ -20,11 +20,6 @@ rt = app.route
 
 game_state = {'running': False, 'grid': [[0 for _ in range(20)] for _ in range(20)]}
 
-#@rt('/')
-#def get(): return Div(P('Welcome to Cotton, press me to start the game'), hx_get="/change")
-#@rt('/change')
-#def get(): return P('Launching Cotton')
-
 
 def Grid():
     cells = []
