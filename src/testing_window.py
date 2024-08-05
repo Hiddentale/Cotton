@@ -11,6 +11,26 @@ css = Style('''
     .cell { width: 20px; height: 20px; border: 1px solid black; }
     .alive { background-color: green; }
     .dead { background-color: white; }
+    .arcade-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }
+    .center-button {
+    padding: 10px 20px;
+    font-size: 40px; 
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  
+}
+
 ''')
 
 app = FastHTML(hdrs=(picolink, css))
@@ -21,25 +41,29 @@ rt = app.route
 
 @rt("/")
 def get():
-    return Head(Title("Seloria's blog")), Body(Div(H1("Welcome to my Blog!")), Div(A('The Cotton Boardgame', href='/Cotton', style="text-align: center;")), Img(src="https://placehold.co/200"))
+    return Head(Title("Seloria(Johan Voskamp's) side of the web")), Body(Div(A("Access my blog", href="/Blog")), Div(A('The Cotton Boardgame', href='/Cotton', style="text-align: center;")), Img(src="/IMG_2414.jpg"))
 
 @rt("/Cotton")
 def get():
-    return Div(main(), id="grid")
-
-#Main(H1("Welcome to Cotton"),
-                #H3("the boardgame"),
-                #Div(Button(A("Exit game", href="/" )), cls="container")) # Need to understand and then fix this, only temporary solution
-
-@rt("/Cotton")
-def put():
-    print("Memes")
+    return Main(H1("Welcome to Cotton", style="text-align: center;"),
+                H3("the boardgame"),
+                Button("Start game", hx_get="/Cotton/Start-Game", hx_swap="outerHTML", cls="center-button"),
+                Footer(
+                        A(Button("Exit game"), href="/"), cls="arcade-footer"), cls="container", style="text-align: center;")
 
 @rt("/message")
 def get():
     return Main(P("Previous messages:"),
                 *[P(msg) for msg in messages]
                 )
+
+@rt("/Cotton/Start-Game")
+def get():
+    return H1("Just imagine there is a working game here")
+
+@rt("/Blog")
+def get():
+    return H1("Work in progress")
 
 
 serve()
