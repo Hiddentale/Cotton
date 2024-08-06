@@ -5,9 +5,10 @@ from amount_of_tiles import get_amount_of_tiles
 
 # 1: Let a game start where a random cotton board is constructed
 # 2: Add the numbers to the tiles
-# 3: Draw the board to a window
+# 3: Draw the center hexagon to the window
+# 4: Draw the rest of the hexagons iteratively
 # 4: Add players
-# 5: 
+# 5: Add player hands
 
 def position_is_in_current_radius(position, current_radius):
     next_radius = current_radius + 1
@@ -60,8 +61,9 @@ def main():
     shuffle(boardgame_tiles)
 
     board = place_boardgame_tiles_hexagonally(boardgame_tiles, board)
+    return board
 
-    print(board)
+    #print(board)
 
 
 if __name__ == "__main__":
