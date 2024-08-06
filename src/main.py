@@ -2,6 +2,7 @@ from tiles import *
 from tile_types import TileTypes
 from random import shuffle
 from amount_of_tiles import get_amount_of_tiles
+from window import pygame_window
 
 # 1: Let a game start where a random cotton board is constructed
 # 2: Add the numbers to the tiles
@@ -61,9 +62,8 @@ def main():
     shuffle(boardgame_tiles)
 
     board = place_boardgame_tiles_hexagonally(boardgame_tiles, board)
-    return board
 
-    #print(board)
+    pygame_window(board)
 
 
 if __name__ == "__main__":

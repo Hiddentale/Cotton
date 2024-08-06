@@ -1,45 +1,52 @@
-from fasthtml.common import *
+import pygame
+import math
 
+pygame.init()
 
-css = Style('''
-    body, html { height: 100%; margin: 0; }
-    body { display: flex; flex-direction: column; }
-    main { flex: 1 0 auto; }
-    footer { flex-shrink: 0; padding: 10px; text-align: center; background-color: #333; color: white; }
-    footer a { color: #9cf; }
-    #grid { display: grid; grid-template-columns: repeat(20, 20px); grid-template-rows: repeat(20, 20px);gap: 1px; }
-    .cell { width: 20px; height: 20px; border: 1px solid black; }
-    .alive { background-color: green; }
-    .dead { background-color: white; }
-''')
+info = pygame.display.Info()
+screen_width = info.current_w
+screen_height = info.current_h
+game_width = int(screen_width * 0.6)
+game_height = int(screen_height * 0.6)
 
-gridlink = Link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css", type="text/css")
-htmx_ws = Script(src="https://unpkg.com/htmx-ext-ws@2.0.0/ws.js")
-app = FastHTML(hdrs=(picolink, gridlink, css, htmx_ws))
-rt = app.route
+screen = pygame.display.set_mode((game_width, game_height))
 
-game_state = {'running': False, 'grid': [[0 for _ in range(20)] for _ in range(20)]}
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
 
+HEXAGON_VERTICES = [(50, 100), (150, 100), (200, 300), (50, 500), (150, 500), (200, 400)]
 
-def Grid():
-    cells = []
-    for y, row in enumerate(game_state['grid']):
-        for x, cell in enumerate(row):
-            cell_class = 'alive' if cell else 'dead'
-            cell = Div(cls=f'cell {cell_class}', hx_put='/update', hx_vals={'x': x, 'y': y}, hx_swap='none', hx_target='#gol', hx_trigger='click')
-            cells.append(cell)
-    return Div(*cells, id='grid')
+def draw_hexagon(screen, color, center):
+    vertices = [(0, 0), (1, 0), (1, 1), (0, 2), (-1, 1), (-1, 0)]
+    
+    scaled_vertices = []
+    for vertex in vertices:
+        scaled_vertex = (int(vertex[0] * game_width / 6) + center[0], 
+                         int(vertex[1] * game_height / 12) + center[1])
+        scaled_vertices.append(scaled_vertex)
+    
+    # Draw the hexagon
+    pygame.draw.polygon(screen, color, scaled_vertices)
 
-def Home():
-    gol = Div(Grid(), id='gol', cls='row center-xs')
-    run_btn = Button('Run', id='run', cls='col-xs-2', hx_put='/run', hx_target='#gol', hx_swap='none')
-    pause_btn = Button('Pause', id='pause', cls='col-xs-2', hx_put='/pause', hx_target='#gol', hx_swap='none')
-    reset_btn = Button('Reset', id='reset', cls='col-xs-2', hx_put='/reset', hx_target='#gol', hx_swap='none')
-    main = Main(gol, Div(run_btn, pause_btn, reset_btn, cls='row center-xs'), hx_ext="ws", ws_connect="/gol")
-    footer = Footer(P('Made by Nathan Cooper. Check out the code', AX('here', href='https://github.com/AnswerDotAI/fasthtml-example/tree/main/game_of_life', target='_blank')))
-    return Title('Game of Life'), main, footer
-
-@rt('/')
-def get(): return Home()
-
-serve() 
+def pygame_window(board):
+    
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        
+        screen.fill(WHITE)
+        
+        for tile in board:
+            u = (tile.get_x() + tile.get_y() + tile.get_z()) / 2
+            v = (-tile.get_x() + tile.get_y() + tile.get_z()) / math.sqrt(3)
+    
+            x = int(u * game_width / 6) + game_width // 2
+            y = int(v * screen_height / 6) + screen_height // 2
+    
+            draw_hexagon(screen, BLACK, (x, y))
+        
+        pygame.display.flip()
+    
+    pygame.quit()

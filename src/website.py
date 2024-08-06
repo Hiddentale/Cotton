@@ -13,10 +13,12 @@ rt = app.route
 def get():
     return Head(Title("Seloria")), \
            Body(
-               Header(Div(Img(src="/static/images/IMG_2414.jpg", cls="profile-pic")), "Welcome to Seloria's Emporia!", style="font-family: Lodeh Regular", ),
+               Header(Div(Img(src="/static/images/IMG_2414.jpg", cls="profile-pic")), "Welcome to Seloria's Emporia!", style="font-family: Lodeh Regular"),
                Nav(Ul(
                    Li(A("Access my blog", href="/Blog")),
-                   Li(A('The Cotton Boardgame', href='/Cotton'))
+                   Li(A('The Cotton Boardgame', href='/Cotton')),
+                   Li(A('About', href='/About')),
+                   Li(A('Contact me', href='/Contact'))
                )),
                Main(
                    Section(
@@ -27,10 +29,6 @@ def get():
                ),
                Footer(P("2024, Seloria"))
            )
-    
-@rt("/test-image")
-async def get():
-    return FileResponse("src/static/IMG_2414.jpg")
 
 @rt("/Cotton")
 def get():
@@ -46,6 +44,25 @@ def get():
     return H1("Just imagine there is a working game here")
 
 @rt("/Blog")
+def get():
+    return Header("Collection of random stuff that crosses my mind"), \
+           Section(Li(A("Here goes my first blogpost", href="/Blog-1")), style="text-align: center"), \
+           Section(Li(A("Here goes my second blogpost", href="/Blog-2")), style="text-align: center")
+
+@rt("/Blog-1")
+def get():
+    return H1("Work in progress", style="text-align: center")
+
+@rt("/Blog-2")
+def get():
+    return H1("Work in progress", style="text-align: center")
+
+
+@rt("/About")
+def get():
+    return H1("Work in progress", style="text-align: center")
+
+@rt("/Contact")
 def get():
     return H1("Work in progress", style="text-align: center")
 
