@@ -1,19 +1,32 @@
 from fasthtml.common import *
 from starlette.staticfiles import StaticFiles
 
-css = Style('''
-            test
-            ''')
+stylesheet_link = Link(rel="stylesheet", href="static/css/styles.css")
 
-app = FastHTML(hdrs=(picolink, css))
+app = FastHTML(hdrs=(picolink, stylesheet_link))
 
-app.mount("/static", StaticFiles(directory="src"), name="static")
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
 rt = app.route
 
 @rt("/")
 def get():
-    return Head(Title("Seloria")), Body((A("Access my blog", href="/Blog"), A('The Cotton Boardgame', href='/Cotton'), Img(src="/static/IMG_2414.jpg")), style="text-align: center;")
+    return Head(Title("Seloria")), \
+           Body(
+               Header(Div(Img(src="/static/images/IMG_2414.jpg", cls="profile-pic")), "Welcome to Seloria's Emporia!", style="font-family: Lodeh Regular", ),
+               Nav(Ul(
+                   Li(A("Access my blog", href="/Blog")),
+                   Li(A('The Cotton Boardgame', href='/Cotton'))
+               )),
+               Main(
+                   Section(
+                       H2("About me"),
+                       P("This is a brief introduction about me."),
+                       Img(src="/static/images/IMG_2414.jpg", cls="profile-pic")
+                   ),
+               ),
+               Footer(P("2024, Seloria"))
+           )
     
 @rt("/test-image")
 async def get():

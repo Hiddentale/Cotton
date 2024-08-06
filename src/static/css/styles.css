@@ -1,61 +1,66 @@
-.arcade-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #000;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
+@font-face {
+  font-family: "OldNewspaperTypes";
+  src: url('/static/fonts/OldNewspaperTypes.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lodeh Regular";
+  src: url('/static/fonts/Lodeh Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
   
-  .arcade-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .arcade-button {
-    display: inline-block;
-    padding: 5px 15px;
-    background-color: #ff0000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  
-  .arcade-button:hover {
-    background-color: #cc0000;
-  }
-  
-  .arcade-text {
-    margin-left: 10px;
-    font-size: 12px;
-  }
+  * {
+    box-sizing: border-box;
+}
 
-  body, html { height: 100%; margin: 0; }
-    body { display: flex; flex-direction: column; background-color: #F5F2D5}
-    main { flex: 1 0 auto; }
-    footer { flex-shrink: 0; padding: 10px; text-align: center; background-color: #333; color: white; }
-    footer a { color: #9cf; }
-    .arcade-footer {
+body {
+  font-family: "OldNewspaperTypes", sans-serif;
+  background-color: #F5F2D5;
+  color: #964B00;
+}
+
+header {
+  background-color: #964B00; 
+  color: #f0e68c; 
+  padding: 20px;
+  text-align: center;
+  font-size: 40px; 
+  border-bottom: 2px solid #964B00; 
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav ul li a {
+  color:#007bff; /* Light yellow links for contrast */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+.profile-pic {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #000;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
-    .center-button {
-    padding: 10px 20px;
-    font-size: 40px; 
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+}
