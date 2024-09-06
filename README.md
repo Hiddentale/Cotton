@@ -1,2 +1,2 @@
 # Cotton
-A Catan-based boardgame
+A Catan-based boardgame, currently on hiatus.
